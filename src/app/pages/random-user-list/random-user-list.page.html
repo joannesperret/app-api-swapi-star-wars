@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Liste des utilisateurs</ion-title>   
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-button (click)="loadUsers(null)">Plus d'utilisateurs</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item *ngFor="let user of userList; let pos=index">
+  
+    <ion-avatar slot="start">
+      <ion-img src="{{user.picture.large}}"></ion-img>
+    </ion-avatar>
+    <ion-label>      
+      <h3>{{user.name.first+" "+user.name.last}}</h3> 
+    </ion-label>
+    <ion-reorder slot="end"></ion-reorder>
+  </ion-item>  
+
+</ion-list>
+<ion-infinite-scroll (ionInfinite)="loadUsers($event)">
+  <ion-infinite-scroll-content
+  loadingSpinner="bubbles"
+  loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+</ion-content>
