@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sw-planet/sw-planet.module').then( m => m.SwPlanetPageModule)
   },
   {
-    path: 'sw-planet-details',
+    path: 'sw-planet-details/:id',
     loadChildren: () => import('./pages/sw-planet-details/sw-planet-details.module').then( m => m.SwPlanetDetailsPageModule)
   }
 ];
