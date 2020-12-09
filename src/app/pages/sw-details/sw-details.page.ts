@@ -44,12 +44,11 @@ export class SwDetailsPage implements OnInit {
 
        );
          // Appel à l'API pour récupérer le lien de la planète         
-         const urlPlanet = response.homeworld;         
+         const urlPlanet = response.homeworld;   
+         // Création de la variable planet      
          const planet = this.http.get(urlPlanet).subscribe((planetResponse: any) =>{
-           console.log(planetResponse);
-           this.character.planete = planetResponse.name;
-         console.log(planetResponse.name);
-         console.log(this.character.planete);
+         // et affectation à l'objet du personnage
+           this.character.planete = planetResponse.name;         
          }
          );
 
