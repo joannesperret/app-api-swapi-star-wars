@@ -70,4 +70,10 @@ export class SwPersonnagesPage implements OnInit {
     this.page--;
   }
 
+  public getId(item){
+    const urlParts = item.url.split('/');
+    console.log(urlParts);
+    return urlParts[urlParts.length - 2];
+  }
+
 }

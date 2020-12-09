@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'sw-personnages',
     loadChildren: () => import('./pages/sw-personnages/sw-personnages.module').then( m => m.SwPersonnagesPageModule)
+  },
+  {
+    path: 'sw-details/:id',
+    loadChildren: () => import('./pages/sw-details/sw-details.module').then( m => m.SwDetailsPageModule)
   }
 ];
 

@@ -12,14 +12,12 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let user of userList; let pos=index">
-     
+    <ion-item *ngFor="let user of userList" routerLink="/sw-details/{{getId(user)}}">     
       <ion-label>
         <h3>{{user.name}}</h3>        
       </ion-label>
       <ion-reorder slot="end"></ion-reorder>
     </ion-item>
-
   </ion-list>
  
 
