@@ -16,6 +16,9 @@ export class SwPersonnagesPage implements OnInit {
 
   public userList = [];
   public numberOfUserPerRequest = '20';
+  public nextUrl: string;
+  public prevUrl: string;
+  public page = 1;
   // public genderPerRequest = 'female';
   // public natPerRequest = 'fr';
   // public dataGender ='man';
@@ -24,37 +27,47 @@ export class SwPersonnagesPage implements OnInit {
   constructor(private http: HttpClient){ }
 
   ngOnInit() {
-    this.loadUsers(null);
+    this.loadUsers(URL);
   }
 
   
 
-  public loadUsers(even){
+  public loadUsers(dataUrl){
     // Requête HTTP, la méthode get retourne un observable
 
     // passage de données en paramétrage
 
-   const search = new HttpParams()
-   .set('results', this.numberOfUserPerRequest);
+  // const search = new HttpParams()
+ //  .set('results', this.numberOfUserPerRequest);
    //.set('gender', this.genderPerRequest)
   // .set('nat', this.natPerRequest);
     // tslint:disable-next-line: align
   // .set('data-gender', this.dataGender);
 
 
-   this.http.get(URL)
+   this.http.get(dataUrl)
     // l'observable est résolu par la méthode subscribe
     .subscribe(
       // fonction callback de succès
       (response: any) => {
       console.log(response);
-      this.userList = this.userList.concat(response.results);
+      this.userList = response.results;
+      this.nextUrl = response.next;
+      this.prevUrl = response.previous;
       console.log(this.userList);
-      if (even){
-        even.target.complete();
-      }
-
     });
+  }
+
+  public nextPage(){
+    this.loadUsers(this.nextUrl);
+    console.log(this.nextUrl);
+    this.page++;
+  }
+
+  public prevPage(){
+    this.loadUsers(this.prevUrl);
+    console.log(this.prevUrl);
+    this.page--;
   }
 
 }

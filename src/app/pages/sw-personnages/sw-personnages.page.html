@@ -21,10 +21,23 @@
     </ion-item>
 
   </ion-list>
-  <ion-infinite-scroll (ionInfinite)="loadUsers($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+ 
 
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" (click)="prevPage()" *ngIf="prevUrl">Précedant</ion-button>
+        </ion-col>
+        <ion-col class="align-self-center"><ion-chip>{{page}}</ion-chip></ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="nextPage()" *ngIf="nextUrl">Suivant</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
