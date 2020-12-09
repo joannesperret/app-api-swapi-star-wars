@@ -38,14 +38,20 @@
             </ion-col>
             <ion-col size="6">
               {{ character.hair_color}}
+            </ion-col>  
+            <ion-col size="6">
+              Planete :
             </ion-col>
+            <ion-col size="6">
+              {{ character.planete}}
+            </ion-col>          
           </ion-row>
         </ion-grid>
         <ion-list>
           <ion-item *ngFor="let film of character.films">
             <ion-label>
-              <h3>{{ film.title }}</h3>
-              <p>sorti le : {{ getDate(film.release_date) | date: 'd MMMM y'}}</p>
+              <h4>{{ film.title }}</h4>
+              <p>sorti le : {{ getDate(film.release_date) | date: 'd M y'}}</p>
             </ion-label>
             <ion-chip slot="end">
               {{ film.episode_id }}

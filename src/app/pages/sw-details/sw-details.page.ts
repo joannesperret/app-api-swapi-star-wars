@@ -14,7 +14,7 @@ import { forkJoin } from 'rxjs';
 
 export class SwDetailsPage implements OnInit {
 
-  public character = {name: null, mass: null, height: null, eye_color: null, hair_color: null, films: []
+  public character = {name: null, mass: null, height: null, eye_color: null, hair_color: null, films: [] ,planete: null
   };
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
@@ -39,9 +39,21 @@ export class SwDetailsPage implements OnInit {
        // pour récupérer la liste des films
        forkJoin(apiCalls).subscribe(
          (res: any[]) => {
-           this.character.films = res;
-         }
+           this.character.films = res;        }
+
+
        );
+         // Appel à l'API pour récupérer le lien de la planète         
+         const urlPlanet = response.homeworld;         
+         const planet = this.http.get(urlPlanet).subscribe((planetResponse: any) =>{
+           console.log(planetResponse);
+           this.character.planete = planetResponse.name;
+         console.log(planetResponse.name);
+         console.log(this.character.planete);
+         }
+         );
+
+         
     });
   }
 
