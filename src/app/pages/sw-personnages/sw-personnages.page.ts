@@ -1,24 +1,23 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 // adresse de l' API à laquelle on veut se connecter
-const URL ='https://randomuser.me/api/';
-
+const URL ='https://swapi.dev/api/people/';
 
 @Component({
-  selector: 'app-random-user-list',
-  templateUrl: './random-user-list.page.html',
-  styleUrls: ['./random-user-list.page.scss'],
+  selector: 'app-sw-personnages',
+  templateUrl: './sw-personnages.page.html',
+  styleUrls: ['./sw-personnages.page.scss'],
 })
-export class RandomUserListPage implements OnInit {
+export class SwPersonnagesPage implements OnInit {  
 
-  // injection d'une instance d' HttpClient dans le constructeur
+   // injection d'une instance d' HttpClient dans le constructeur
   // stockée dans une variable nommée http
 
   public userList = [];
-  public numberOfUserPerRequest = '1';
-  public genderPerRequest = 'female';
-  public natPerRequest = 'fr';
+  public numberOfUserPerRequest = '20';
+  // public genderPerRequest = 'female';
+  // public natPerRequest = 'fr';
   // public dataGender ='man';
 
 
@@ -36,14 +35,14 @@ export class RandomUserListPage implements OnInit {
     // passage de données en paramétrage
 
    const search = new HttpParams()
-   .set('results', this.numberOfUserPerRequest)
-   .set('gender', this.genderPerRequest)
-   .set('nat', this.natPerRequest);
+   .set('results', this.numberOfUserPerRequest);
+   //.set('gender', this.genderPerRequest)
+  // .set('nat', this.natPerRequest);
     // tslint:disable-next-line: align
   // .set('data-gender', this.dataGender);
 
 
-   this.http.get(URL, {params: search})
+   this.http.get(URL)
     // l'observable est résolu par la méthode subscribe
     .subscribe(
       // fonction callback de succès

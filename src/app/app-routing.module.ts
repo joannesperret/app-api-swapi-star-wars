@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'random-user-list',
     loadChildren: () => import('./pages/random-user-list/random-user-list.module').then( m => m.RandomUserListPageModule)
+  },
+  {
+    path: 'sw-personnages',
+    loadChildren: () => import('./pages/sw-personnages/sw-personnages.module').then( m => m.SwPersonnagesPageModule)
   }
 ];
 
