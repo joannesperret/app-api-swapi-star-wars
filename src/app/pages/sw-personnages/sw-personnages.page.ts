@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 // adresse de l' API à laquelle on veut se connecter
-const URL ='https://swapi.dev/api/people/';
+export const URL ='https://swapi.dev/api/people/';
 
 @Component({
   selector: 'app-sw-personnages',

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { URL } from '../sw-personnages/sw-personnages.page';
+import { forkJoin } from 'rxjs';
 
 
 
@@ -29,7 +30,23 @@ export class SwDetailsPage implements OnInit {
     this.http.get(detailUrl).subscribe((response: any) => {
       console.log(response);
       this.character = response;
+       // Tableau des appels à l'API pour récupérer la liste des films
+       const apiCalls = [];
+       for (const url of response.films) {
+         apiCalls.push(this.http.get(url));
+       }
+       // Résolution en une fois de tous les appels à l'API
+       // pour récupérer la liste des films
+       forkJoin(apiCalls).subscribe(
+         (res: any[]) => {
+           this.character.films = res;
+         }
+       );
     });
+  }
+
+  public getDate(date: string) {
+    return new Date(date);
   }
 
 }

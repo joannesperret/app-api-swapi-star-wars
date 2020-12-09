@@ -41,6 +41,17 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        <ion-list>
+          <ion-item *ngFor="let film of character.films">
+            <ion-label>
+              <h3>{{ film.title }}</h3>
+              <p>sorti le : {{ getDate(film.release_date) | date: 'd MMMM y'}}</p>
+            </ion-label>
+            <ion-chip slot="end">
+              {{ film.episode_id }}
+            </ion-chip>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card-header>
   </ion-card>
