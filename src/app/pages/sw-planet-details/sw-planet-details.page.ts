@@ -46,7 +46,7 @@ export class SwPlanetDetailsPage implements OnInit {
          apiCallsPersonnages.push(this.http.get(url));
        }
        // Résolution en une fois de tous les appels à l'API
-       // pour récupérer la liste des films
+       // pour récupérer la liste des personnages
        forkJoin(apiCallsPersonnages).subscribe(
          (resPersonnages: any[]) => {
            this.planet.residents = resPersonnages;        }
