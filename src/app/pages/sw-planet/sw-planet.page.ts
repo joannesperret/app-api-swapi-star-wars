@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 // adresse de l' API à laquelle on veut se connecter
-// adresse à adapter lors de l'édition de la page détail
-// adresse de l' API à laquelle on veut se connecter
 export const URL ='https://swapi.dev/api/planets/';
 
 @Component({
@@ -30,16 +28,6 @@ export class SwPlanetPage implements OnInit {
 
   public loadPlanets(dataUrl){
     // Requête HTTP, la méthode get retourne un observable
-
-    // passage de données en paramétrage
-
-  // const search = new HttpParams()
- //  .set('results', this.numberOfUserPerRequest);
-   //.set('gender', this.genderPerRequest)
-  // .set('nat', this.natPerRequest);
-    // tslint:disable-next-line: align
-  // .set('data-gender', this.dataGender);
-
 
    this.http.get(dataUrl)
     // l'observable est résolu par la méthode subscribe
