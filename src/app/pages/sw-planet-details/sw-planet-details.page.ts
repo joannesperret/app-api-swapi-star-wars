@@ -11,7 +11,8 @@ import { forkJoin } from 'rxjs';
 })
 export class SwPlanetDetailsPage implements OnInit {
 
-  public character = {name: null, mass: null, height: null, eye_color: null, hair_color: null, films: [] ,planete: null
+  public planet = {name: null, rotation_period: null, orbital_period: null, diameter: null, climate: null, films: [] ,gravity: null,
+  terrain: null, surface_water: null, population: null, residents: []
   };
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
@@ -26,7 +27,7 @@ export class SwPlanetDetailsPage implements OnInit {
     const detailUrl = URL + id;
     this.http.get(detailUrl).subscribe((response: any) => {
       console.log(response);
-      this.character = response;
+      this.planet = response;
        // Tableau des appels à l'API pour récupérer la liste des films
        const apiCalls = [];
        for (const url of response.films) {
@@ -36,18 +37,21 @@ export class SwPlanetDetailsPage implements OnInit {
        // pour récupérer la liste des films
        forkJoin(apiCalls).subscribe(
          (res: any[]) => {
-           this.character.films = res;        }
-
+           this.planet.films = res;        }
 
        );
-         // Appel à l'API pour récupérer le lien de la planète         
-         const urlPlanet = response.homeworld;   
-         // Création de la variable planet      
-         const planet = this.http.get(urlPlanet).subscribe((planetResponse: any) =>{
-         // et affectation à l'objet du personnage
-           this.character.planete = planetResponse.name;         
-         }
-         );
+         // Tableau des appels à l'API pour récupérer la liste des personnages
+       const apiCallsPersonnages = [];
+       for (const url of response.residents) {
+         apiCallsPersonnages.push(this.http.get(url));
+       }
+       // Résolution en une fois de tous les appels à l'API
+       // pour récupérer la liste des films
+       forkJoin(apiCallsPersonnages).subscribe(
+         (resPersonnages: any[]) => {
+           this.planet.residents = resPersonnages;        }
+
+       );
 
          
     });
