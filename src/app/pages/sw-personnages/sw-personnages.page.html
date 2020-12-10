@@ -28,11 +28,11 @@
   <ion-toolbar>
     <ion-grid>
       <ion-row>
-        <ion-col>
+        <ion-col size="5">
           <ion-button expand="block" (click)="prevPage()" *ngIf="prevUrl">Précedant</ion-button>
         </ion-col>
-        <ion-col><ion-chip>{{page}}</ion-chip></ion-col>
-        <ion-col>
+        <ion-col size="2"><ion-chip>{{page}}</ion-chip></ion-col>
+        <ion-col size="5">
           <ion-button expand="block" (click)="nextPage()" *ngIf="nextUrl">Suivant</ion-button>
         </ion-col>
       </ion-row>
