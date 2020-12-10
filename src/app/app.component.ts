@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
       title: 'Liste Vaisseaux S-W',
       url: '/sw-ship',
       icon: 'rocket'
+    },
+    {
+      title: 'Liste des films S-W',
+      url: '/sw-films',
+      icon: 'easel'
     }
 
   ];

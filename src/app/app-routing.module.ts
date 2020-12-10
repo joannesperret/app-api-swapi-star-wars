@@ -44,7 +44,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sw-films/sw-films.module').then( m => m.SwFilmsPageModule)
   },
   {
-    path: 'sw-films-characters',
+    path: 'sw-films-characters/:id',
     loadChildren: () => import('./pages/sw-films-characters/sw-films-characters.module').then( m => m.SwFilmsCharactersPageModule)
   }
 ];
