@@ -38,6 +38,14 @@ const routes: Routes = [
   {
     path: 'sw-ship-details/:id',
     loadChildren: () => import('./pages/sw-ship-details/sw-ship-details.module').then( m => m.SwShipDetailsPageModule)
+  },
+  {
+    path: 'sw-films',
+    loadChildren: () => import('./pages/sw-films/sw-films.module').then( m => m.SwFilmsPageModule)
+  },
+  {
+    path: 'sw-films-characters',
+    loadChildren: () => import('./pages/sw-films-characters/sw-films-characters.module').then( m => m.SwFilmsCharactersPageModule)
   }
 ];
 
