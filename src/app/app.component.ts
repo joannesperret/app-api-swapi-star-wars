@@ -20,12 +20,17 @@ export class AppComponent implements OnInit {
     {
       title: 'Liste personnage S-W',
       url: '/sw-personnages',
-      icon: 'star'
+      icon: 'skull'
     },
     {
       title: 'Liste Planetes S-W',
       url: '/sw-planet',
-      icon: 'moon'
+      icon: 'planet'
+    },
+    {
+      title: 'Liste Vaisseaux S-W',
+      url: '/sw-ship',
+      icon: 'rocket'
     }
 
   ];
