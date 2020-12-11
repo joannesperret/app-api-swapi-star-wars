@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'sw-films-characters/:id',
     loadChildren: () => import('./pages/sw-films-characters/sw-films-characters.module').then( m => m.SwFilmsCharactersPageModule)
+  },
+  {
+    path: 'map',
+    loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule)
   }
 ];
 

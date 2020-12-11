@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
       title: 'Liste des films S-W',
       url: '/sw-films',
       icon: 'easel'
+    },
+    {
+      title: 'Cartographie',
+      url: '/map',
+      icon: 'map'
     }
 
   ];
