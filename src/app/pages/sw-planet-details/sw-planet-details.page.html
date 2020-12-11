@@ -64,29 +64,29 @@
               {{ planet.population}}
             </ion-col>         
           </ion-row>       
-         </ion-grid>
-        <ion-list>
-          <ion-label>Films</ion-label>
-          <ion-item *ngFor="let film of planet.films">
-            <ion-label>
-              <h4>{{ film.title }}</h4>
-              <p>sorti le : {{ getDate(film.release_date) | date: 'd M y'}}</p>
-            </ion-label>
-            <ion-chip slot="end">
-              {{ film.episode_id }}
-            </ion-chip>
-          </ion-item>
-        </ion-list>
-        <ion-label>Habitants:</ion-label>
-        <ion-list>
-          <ion-item *ngFor="let resident of planet.residents">
-            <ion-label>
-              <h4>{{ resident.name }}</h4>              
-            </ion-label>                     
-          </ion-item>
-        </ion-list>
+         </ion-grid>       
       </ion-card-content>
     </ion-card-header>
   </ion-card>
+  <ion-list>
+    <ion-label>Films</ion-label>
+    <ion-item *ngFor="let film of planet.films">
+      <ion-label>
+        <h4>{{ film.title }}</h4>
+        <p>sorti le : {{ getDate(film.release_date) | date: 'd M y'}}</p>
+      </ion-label>
+      <ion-chip slot="end">
+        {{ film.episode_id }}
+      </ion-chip>
+    </ion-item>
+  </ion-list>
+  <ion-label>Habitants:</ion-label>
+  <ion-list>
+    <ion-item *ngFor="let resident of planet.residents">
+      <ion-label>
+        <h4>{{ resident.name }}</h4>              
+      </ion-label>                     
+    </ion-item>
+  </ion-list>
 </ion-content>
 

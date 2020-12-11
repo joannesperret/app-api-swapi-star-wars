@@ -88,28 +88,28 @@
               {{ ship.starship_class}}
             </ion-col>        
           </ion-row>       
-         </ion-grid>
-        <ion-list>
-          <ion-label>Films</ion-label>
-          <ion-item *ngFor="let film of ship.films">
-            <ion-label>
-              <h4>{{ film.title }}</h4>
-              <p>sorti le : {{ getDate(film.release_date) | date: 'd M y'}}</p>
-            </ion-label>
-            <ion-chip slot="end">
-              {{ film.episode_id }}
-            </ion-chip>
-          </ion-item>
-        </ion-list>
-        <ion-label>Pilotes:</ion-label>
-        <ion-list>
-          <ion-item *ngFor="let pilots of ship.pilots">
-            <ion-label>
-              <h4>{{ pilots.name }}</h4>              
-            </ion-label>                     
-          </ion-item>
-        </ion-list>
+         </ion-grid>    
       </ion-card-content>
     </ion-card-header>
   </ion-card>
+  <ion-list>
+    <ion-label>Films</ion-label>
+    <ion-item *ngFor="let film of ship.films">
+      <ion-label>
+        <h4>{{ film.title }}</h4>
+        <p>sorti le : {{ getDate(film.release_date) | date: 'd M y'}}</p>
+      </ion-label>
+      <ion-chip slot="end">
+        {{ film.episode_id }}
+      </ion-chip>
+    </ion-item>
+  </ion-list>
+  <ion-label>Pilotes:</ion-label>
+  <ion-list>
+    <ion-item *ngFor="let pilots of ship.pilots">
+      <ion-label>
+        <h4>{{ pilots.name }}</h4>              
+      </ion-label>                     
+    </ion-item>
+  </ion-list>
 </ion-content>

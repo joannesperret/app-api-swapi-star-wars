@@ -16,7 +16,7 @@ export class RandomUserListPage implements OnInit {
   // stockée dans une variable nommée http
 
   public userList = [];
-  public numberOfUserPerRequest = '1';
+  public numberOfUserPerRequest = '10';
   public genderPerRequest = 'female';
   public natPerRequest = 'fr';
   // public dataGender ='man';
