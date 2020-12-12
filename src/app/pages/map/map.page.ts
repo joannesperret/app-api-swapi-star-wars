@@ -16,8 +16,13 @@ export class MapPage implements OnInit {
   public pmrList = {};
   public pmrLocalisation = [];
 
-  // API paramétrée pour appel des 797 emplacements
+  // API paramétrée pour appel des 797 emplacements des emplacements PMR de Roubaix
   public UrlPmrRoubaix = 'https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=les-emplacements-de-stationnement-pmr-a-roubaix&q=&rows=797';
+  
+  // API paramétrée pour appel des 1 575 emplacements PMR de Lille
+
+  public UrlPmrLille ='https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=stationnements-reserves-a-lille&q=&rows=1574';
+  
   public coords = [];
   constructor(private geolocation: Geolocation, private http: HttpClient) {
 
@@ -25,7 +30,7 @@ export class MapPage implements OnInit {
 
   ngOnInit() {
     // Fonction d'appel de l' API de geolocalisation des emplacements PMR à Roubaix
-    this.loadPmrRoubaix(this.UrlPmrRoubaix);
+    this.loadPmrRoubaix(this.UrlPmrLille);
 
     // .then( toast => toast.present());
   }
@@ -45,7 +50,7 @@ export class MapPage implements OnInit {
           console.log("Promesse");
           // boucle d'ajout de cercle sur chaque coordonnée d'emplacement PMR 
           //this.initMap(position.coords);             
-          for (let i = 0; i < 796; i++) {
+          for (let i = 0; i < 1573; i++) {
             //circle([this.pmrList[i].fields.geo_point_2d],{color: 'blue', radius: 50}).addTo(this.map)
             //.bindPopup('<p>Emplacement PMR</p>');  
 
@@ -100,7 +105,7 @@ export class MapPage implements OnInit {
     circle([50.6857071369, 3.16269155713], { color: 'blue', radius: 50 }).addTo(this.map)
       .bindPopup('<p>Emplacement PMR</p>');
 
-     for (let i = 0; i < 797; i++) {
+     for (let i = 0; i < 1573; i++) {
       circle(this.pmrList[i].fields.geo_point_2d,{color: 'blue', radius: 5}).addTo(this.map)
       .bindPopup('<p>Emplacement PMR</p>'); 
      // console.log(this.pmrList[0].fields.geo_point_2d);
