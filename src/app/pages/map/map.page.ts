@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Map, tileLayer, marker, circle } from 'leaflet';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { Geolocation, Geoposition, PositionError } from '@ionic-native/geolocation/ngx';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -36,6 +36,11 @@ export class MapPage implements OnInit {
     //watch.unsubscribe();
     // Rafraîchissement position
     //  setTimeout(this.ionViewDidEnter, 5000);
+  }
+
+  // Désabonnement lors de la fermeture de l'application
+  ngOnDestroy() {
+    
   }
 
   // Fonction d' appel à l' API pour ajout des emplacements PMR Roubaisiens sur la carte
@@ -81,7 +86,7 @@ export class MapPage implements OnInit {
       });
     this.geolocation.watchPosition().subscribe(position => {
       if ((position as Geoposition).coords !== undefined) {
-        let geoposition = (position as Geoposition);
+        const geoposition = (position as Geoposition);
         console.log('Latitude: ' + geoposition.coords.latitude + ' - Longitude: ' + geoposition.coords.longitude);
         this.coords = [];
         this.coords.push(geoposition.coords.latitude);
@@ -90,7 +95,7 @@ export class MapPage implements OnInit {
         console.log('coords watch' + this.coords);
         tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
       } else {
-        let positionError = (position as PositionError);
+        const positionError = (position as PositionError);
         console.log('Error ' + positionError.code + ': ' + positionError.message);
       }
     });
@@ -105,12 +110,11 @@ export class MapPage implements OnInit {
     // console.log('this coords: '+ this.coords);
     console.log('coords ' + coords);
 
-
-
     // setTimeout(this.ionViewDidEnter, 5000);
-    // Ajout du marqueur de position
+    // Ajout du marqueur de position à l'instanciation de la carte
 
-    circle(coords, { color: 'blue', radius: 5 }).addTo(this.map).bindPopup('<p>Vous êtes ici!</p>');
+    circle(coords, { color: 'blue', radius: 10 }).addTo(this.map).bindPopup('<p>Vous êtes ici!</p>');
+
     // Ajout d'un marqueur test dans le jardin
 
     circle([50.704295, 3.252503], { color: 'green', radius: 2 }).addTo(this.map).bindPopup('<p>Place PMR test!</p>');
@@ -122,25 +126,27 @@ export class MapPage implements OnInit {
         .bindPopup('<p>Emplacement PMR</p>');
     }
 
+    // Fonction de mise à jour de la position
+    
     this.geolocation.watchPosition().subscribe(position => {
+      const geoposition = (position as Geoposition);
       if ((position as Geoposition).coords !== undefined) {
-        let geoposition = (position as Geoposition);
         console.log('Latitude: ' + geoposition.coords.latitude + ' - Longitude: ' + geoposition.coords.longitude);
+        // let oldPosition = this.coords;
+        console.log('geoposition : ' + geoposition);
+        circle(coords).remove();
         this.coords = [];
         this.coords.push(geoposition.coords.latitude);
         this.coords.push(geoposition.coords.longitude);
-        this.map.setView(this.coords);
+        this.map.setView(coords);
         console.log('coords watch' + this.coords);
+        // Ajout d'un marqueur sur la nouvelle position
+        circle(coords, { color: 'blue', radius: 5 }).addTo(this.map);
         tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(this.map);
       } else {
-        let positionError = (position as PositionError);
-        console.log('Error ' + positionError.code + ': ' + positionError.message);
+        const GeolocationPositionError = (position as PositionError);
+        console.log('Error ' + GeolocationPositionError.code + ': ' + GeolocationPositionError.message);
       }
     });
-
-
   }
-  
-
-  
 }
